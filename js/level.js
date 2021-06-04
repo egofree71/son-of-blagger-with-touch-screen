@@ -154,10 +154,10 @@ var Level =
     this.upperBlackRectangle.drawRect(0, 0, game.camera.width, game.camera.height);
 
     // Display the title
-    this.introductionLogo = game.add.sprite(180, 50, 'title');
+    this.introductionLogo = game.add.sprite(180, 30, 'title');
     this.introductionLogo.fixedToCamera = true;
 
-    this.fontIntroduction = Util.drawFontText("Touch the screen to start a new game", 2, 15);
+    this.fontIntroduction = Util.drawFontText("Touch the screen to start a new game", 2, 10);
   },
 
   // Remove the introduction title

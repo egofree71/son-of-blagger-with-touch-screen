@@ -39,33 +39,30 @@ var HUD =
         myBitmap.context.fillStyle = grd;
         myBitmap.context.fillRect(0, 0, this.charWidth * 38, this.charWidth);
 
-        var sprite = game.add.sprite(this.charWidth * 6, game.camera.height + this.charWidth * 2, myBitmap);
+        var sprite = game.add.sprite(this.charWidth * 6, game.camera.height + this.charWidth, myBitmap);
         sprite.fixedToCamera = true;
 
         // Draw air level
         this.airLevelRectangle = game.add.graphics();
         this.airLevelRectangle.beginFill(0x000000, 1);
-        this.airLevelRectangle.drawRect(this.charWidth * 6 + 16, game.camera.height + this.charWidth * 2 + 4, Level.airLevel, this.charWidth - 8);
+        this.airLevelRectangle.drawRect(this.charWidth * 6 + 16, game.camera.height + this.charWidth + 4, Level.airLevel, this.charWidth - 8);
         this.airLevelRectangle.endFill();
         this.airLevelRectangle.fixedToCamera = true;
 
-        this.drawText("air", 2, 2, 0x399aff);
+        this.drawText("air", 2, 1, 0x399aff);
 
         this.bonusManSprite = game.add.sprite(this.charWidth * 2, game.camera.height + this.charWidth * 5, 'bonusMan');
         this.hideBonusMan();
         this.bonusManSprite.fixedToCamera = true;
 
-        this.drawText("lives", 2, 6, 0x808080);
-        this.HUDLives = this.drawText(('00' + GameController.lives).substr(-2), 8, 6);
+        this.drawText("lives", 2, 4, 0x808080);
+        this.HUDLives = this.drawText(('00' + GameController.lives).substr(-2), 8, 4);
 
-        this.drawText("score", 2, 8, 0x808080);
-        this.HUDScore = this.drawText(('000000' + GameController.score).substr(-6), 8, 8);
+        this.drawText("score", 14, 4, 0x808080);
+        this.HUDScore = this.drawText(('000000' + GameController.score).substr(-6), 20, 4);
 
-        this.drawText("level", 30, 6, 0x808080);
-        this.HUDLevel = this.drawText(('00' + Level.level).substr(-2), 36, 6);
-
-        this.drawText("hi-score", 23, 8, 0x808080);
-        this.HUDHiScore = this.drawText(('000000' + GameController.hiScore).substr(-6), 32, 8);
+        this.drawText("level", 30, 4, 0x808080);
+        this.HUDLevel = this.drawText(('00' + Level.level).substr(-2), 36, 4);
     },
 
     // If there is a 'bonus man', display the 'bonus man' sprite, and change its color
@@ -135,7 +132,7 @@ var HUD =
         // Display the air bar
         this.airLevelRectangle.clear();
         this.airLevelRectangle.beginFill(0x000000, 1);
-        this.airLevelRectangle.drawRect(this.charWidth * 6 + 16, game.camera.height + this.charWidth * 2 + 4, Level.airLevel, this.charWidth - 8);
+        this.airLevelRectangle.drawRect(this.charWidth * 6 + 16, game.camera.height + this.charWidth + 4, Level.airLevel, this.charWidth - 8);
         this.airLevelRectangle.endFill();
     },
 
@@ -162,7 +159,6 @@ var HUD =
     {
         this.HUDLives.text = ('00' + GameController.lives).substr(-2);
         this.HUDScore.text = ('000000' + GameController.score).substr(-6);
-        this.HUDHiScore.text = ('000000' + GameController.hiScore).substr(-6);
         this.HUDLevel.text = ('00' + Level.level).substr(-2);
     },
 
