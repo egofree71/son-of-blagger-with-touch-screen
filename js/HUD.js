@@ -1,49 +1,49 @@
 var HUD =
 {
     // Width of a character in pixels
-    charWidth : 16,
+    charWidth: 16,
 
     // Score displayed in the hud
-    HUDScore : null,
-    HUDHiscore : null,
+    HUDScore: null,
+    HUDHiscore: null,
 
     // Lives displayed in the hud
-    HUDLives : null,
-    HUDLevel : null,
-    airLevelRectangle : null,
+    HUDLives: null,
+    HUDLevel: null,
+    airLevelRectangle: null,
 
     // Counter used to decrease the air level
-    counter : 36,
-    bonusManSprite : null,
+    counter: 36,
+    bonusManSprite: null,
 
-    colorCounter : 3,
-    colorIndex : 0,
-    increaseColorIndex : true,
+    colorCounter: 3,
+    colorIndex: 0,
+    increaseColorIndex: true,
 
-    init : function()
+    init: function ()
     {
         // Initialize HUD
         game.camera.height = 200;
 
         // Draw the black background
-        var background  = game.add.graphics();
-        background.beginFill( 0x000000, 1);
+        var background = game.add.graphics();
+        background.beginFill(0x000000, 1);
         background.drawRect(0, game.camera.height, game.camera.width, game.camera.height);
         background.fixedToCamera = true;
 
         // Display the background of the air level
         var myBitmap = game.add.bitmapData(this.charWidth * 38 - this.charWidth * 6, this.charWidth);
         var grd = myBitmap.context.createLinearGradient(0, 0, this.charWidth * 38, 0);
-        grd.addColorStop(0,"red");
-        grd.addColorStop(1,"#399aff");
-        myBitmap.context.fillStyle=grd;
+        grd.addColorStop(0, "red");
+        grd.addColorStop(1, "#399aff");
+        myBitmap.context.fillStyle = grd;
         myBitmap.context.fillRect(0, 0, this.charWidth * 38, this.charWidth);
 
         var sprite = game.add.sprite(this.charWidth * 6, game.camera.height + this.charWidth * 2, myBitmap);
         sprite.fixedToCamera = true;
 
         // Draw air level
-        this.airLevelRectangle  = game.add.graphics();
+        this.airLevelRectangle = game.add.graphics();
         this.airLevelRectangle.beginFill(0x000000, 1);
         this.airLevelRectangle.drawRect(this.charWidth * 6 + 16, game.camera.height + this.charWidth * 2 + 4, Level.airLevel, this.charWidth - 8);
         this.airLevelRectangle.endFill();
@@ -65,11 +65,11 @@ var HUD =
         this.HUDLevel = this.drawText(('00' + Level.level).substr(-2), 36, 6);
 
         this.drawText("hi-score", 23, 8, 0x808080);
-        this.HUDHiScore =this. drawText(('000000' + GameController.hiScore).substr(-6), 32, 8);
+        this.HUDHiScore = this.drawText(('000000' + GameController.hiScore).substr(-6), 32, 8);
     },
 
     // If there is a 'bonus man', display the 'bonus man' sprite, and change its color
-    displayBonusMan : function()
+    displayBonusMan: function ()
     {
         if (Level.bonusMan)
         {
@@ -97,22 +97,22 @@ var HUD =
     },
 
     // Hide the bonus man sprite
-    hideBonusMan : function()
+    hideBonusMan: function ()
     {
         this.bonusManSprite.tint = 0x000000;
     },
 
     // Decrease air level and display it
-    updateAirLevel : function()
+    updateAirLevel: function ()
     {
-        if (GameController.gameState != "playing") return ;
+        if (GameController.gameState != "playing") return;
 
         this.counter -= 1;
 
         if (this.counter == 0)
         {
             this.counter = 36;
-            Level.airLevel -=1;
+            Level.airLevel -= 1;
         }
 
         if (Level.airLevel <= 0)
@@ -125,12 +125,12 @@ var HUD =
 
     },
 
-    clearAirLevel : function()
+    clearAirLevel: function ()
     {
         this.airLevelRectangle.clear();
     },
 
-    displayAirLevel : function()
+    displayAirLevel: function ()
     {
         // Display the air bar
         this.airLevelRectangle.clear();
@@ -140,25 +140,25 @@ var HUD =
     },
 
     // Update the lives display
-    displayLives : function()
+    displayLives: function ()
     {
         this.HUDLives.text = ('00' + GameController.lives).substr(-2);
     },
 
     // Update the score display
-    displayScore : function()
+    displayScore: function ()
     {
         this.HUDScore.text = ('000000' + GameController.score).substr(-6);
     },
 
     // Update the level display
-    displayLevelInfo : function()
+    displayLevelInfo: function ()
     {
         this.HUDLevel.text = ('00' + level).substr(-2);
     },
 
     // Update all HUD infromation
-    update : function()
+    update: function ()
     {
         this.HUDLives.text = ('00' + GameController.lives).substr(-2);
         this.HUDScore.text = ('000000' + GameController.score).substr(-6);
@@ -167,11 +167,11 @@ var HUD =
     },
 
     // Draw a text within the hud
-    drawText : function(text, x, y, color)
+    drawText: function (text, x, y, color)
     {
         var font = game.add.retroFont('blaggerFont', 16, 16, Phaser.RetroFont.TEXT_SET2);
         font.text = text;
-        var image = game.add.image(this.charWidth * x ,  game.camera.height + this.charWidth * y, font);
+        var image = game.add.image(this.charWidth * x, game.camera.height + this.charWidth * y, font);
 
         // If color is not defined, use white
         if (!color)

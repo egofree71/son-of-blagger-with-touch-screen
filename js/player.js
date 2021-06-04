@@ -1,25 +1,25 @@
 var Player =
 {
 	// Show if the player is jumping
-	jumping : false,
+	jumping: false,
 	// The index in the jump animation
-	jumpIndex : 0,
+	jumpIndex: 0,
 	// Show the horizontal direction of the jump
-	jumpingDirection : null,
+	jumpingDirection: null,
 	// When player is falling, store the fall height
-	fallHeight : 0,
+	fallHeight: 0,
 	// If the player exceeds this limit, the fall is deadly
-	fallLimit : 72,
-	deadlyFall : false,
+	fallLimit: 72,
+	deadlyFall: false,
 
-	playerSprite : null,
-	playerDyingSprite : null,
+	playerSprite: null,
+	playerDyingSprite: null,
 
-	animationMaxCounter : 5,
-	animationLeftCounter : 0,
-	animationRightCounter : 0,
+	animationMaxCounter: 5,
+	animationLeftCounter: 0,
+	animationRightCounter: 0,
 
-	create : function()
+	create: function ()
 	{
 		// Create the playerSprite
 		this.playerSprite = game.add.sprite(0, 0, 'blagger');
@@ -32,7 +32,7 @@ var Player =
 	},
 
 	// Reset player's properties
-	reset : function()
+	reset: function ()
 	{
 		// find player's position for the current level
 		var results = Util.findObjectsByProperty(map, 'level', Level.level, 'player');
@@ -56,9 +56,9 @@ var Player =
 		this.fallHeight = 0;
 	},
 
-	update : function()
+	update: function ()
 	{
-		if (GameController.gameState != "playing") return ;
+		if (GameController.gameState != "playing") return;
 
 		// Store the direction of the playerSprite
 		var horizontalDirection = null;
@@ -73,31 +73,31 @@ var Player =
 		{
 			this.playerSprite.body.y += 1;
 
-		    // if the player meets anything, end the fall
-		    if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "type", "solid", true))
-		    {
+			// if the player meets anything, end the fall
+			if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "type", "solid", true))
+			{
 				fallHeight = 0;
 				this.kill();
-		    }
+			}
 
-		    return;
+			return;
 		}
 
 		// If the player is not falling and not jumping
 		if (this.fallHeight == 0 && this.jumping == false)
 		{
-		    // If the player wants to jump
-		    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
-		    {
+			// If the player wants to jump
+			if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+			{
 				this.jumping = true;
 				this.jumpIndex = 0;
 				this.jumpingDirection = null;
-		    }
+			}
 
-		    // If the player wants to go right
-		    if (keyPressed.right.isDown)
-		    {
-		        if (this.jumping)
+			// If the player wants to go right
+			if (keyPressed.right.isDown)
+			{
+				if (this.jumping)
 					this.jumpingDirection = "RIGHT";
 
 				horizontalDirection = "RIGHT";
@@ -112,12 +112,12 @@ var Player =
 
 				this.playRight();
 
-		    }
+			}
 
-		    // If the player wants to go left
-		    if (keyPressed.left.isDown)
-		    {
-		        if (this.jumping)
+			// If the player wants to go left
+			if (keyPressed.left.isDown)
+			{
+				if (this.jumping)
 					this.jumpingDirection = "LEFT";
 
 				horizontalDirection = "LEFT";
@@ -132,33 +132,33 @@ var Player =
 
 				this.playLeft();
 
-		    }
+			}
 		}
 
 		if (this.jumping)
 		{
-		   if (this.jumpingDirection == "LEFT")
-			this.playLeft();
+			if (this.jumpingDirection == "LEFT")
+				this.playLeft();
 
-		   if (this.jumpingDirection == "RIGHT")
-			this.playRight();
+			if (this.jumpingDirection == "RIGHT")
+				this.playRight();
 
-			this.jumpIndex +=1;
+			this.jumpIndex += 1;
 
-		    // If the player begins the fall
-		    if (this.jumpIndex >= 50)
-		    {
+			// If the player begins the fall
+			if (this.jumpIndex >= 50)
+			{
 				this.fallHeight += 1;
 
-		        // Test if there is an object under the player
-		        if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "type", "solid", true) ||
+				// Test if there is an object under the player
+				if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "type", "solid", true) ||
 					Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "type", "slide", true) ||
 					Util.collisionLineWithVanishingPlatform(x + 7, x + 23, y + this.playerSprite.body.height))
 				{
 					this.jumping = false;
 					this.fallHeight = 0;
 					this.playerSprite.animations.stop();
-		        }
+				}
 				// If it's a deadly fall, display the white sprites
 				else if (this.fallHeight == this.fallLimit)
 				{
@@ -166,22 +166,22 @@ var Player =
 					this.playerSprite.loadTexture('blaggerWhite', this.playerSprite.animations.currentAnim.frame);
 				}
 
-		    }
+			}
 
-		    // If the player is still jumping
-		    if (this.jumping == true)
-		    {
+			// If the player is still jumping
+			if (this.jumping == true)
+			{
 				verticalDirection = Data.jumpPath[this.jumpIndex][1];
 
 				// If the jump position does not have an horizontal direction
-		      	if (Data.jumpPath[this.jumpIndex][0] == false)
-		      		horizontalDirection = null;
-		      	else
-		      		horizontalDirection = this.jumpingDirection;
+				if (Data.jumpPath[this.jumpIndex][0] == false)
+					horizontalDirection = null;
+				else
+					horizontalDirection = this.jumpingDirection;
 
-				if (this.jumpIndex >= Data.jumpPath.length-1)
+				if (this.jumpIndex >= Data.jumpPath.length - 1)
 					this.jumping = false;
-		    }
+			}
 
 		}
 
@@ -196,7 +196,7 @@ var Player =
 			}
 
 			// If the player is on a slide going right
-			if (Util.horizontalCollisionLine (x + 7, x + 23, y + this.playerSprite.body.height + 14, "name", "right slide", false))
+			if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height + 14, "name", "right slide", false))
 			{
 				horizontalDirection = "RIGHT";
 				verticalDirection = "DOWN";
@@ -204,9 +204,9 @@ var Player =
 			}
 
 			// If the player is not sliding
-		    if (verticalDirection == null)
-		    {
-		        // Test if the player is falling
+			if (verticalDirection == null)
+			{
+				// Test if the player is falling
 				if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "type", "solid", false) == false &&
 					Util.collisionLineWithVanishingPlatform(x + 7, x + 23, y + this.playerSprite.body.height) == false)
 				{
@@ -214,23 +214,23 @@ var Player =
 					horizontalDirection = null;
 					this.playerSprite.animations.stop();
 
-					this.fallHeight +=1;
+					this.fallHeight += 1;
 
-		            // If it's a deadly fall, display the white sprites
-		            if (this.fallHeight == this.fallLimit)
-		            {
+					// If it's a deadly fall, display the white sprites
+					if (this.fallHeight == this.fallLimit)
+					{
 						this.deadlyFall = true;
 						this.playerSprite.loadTexture('blaggerWhite', this.playerSprite.animations.currentAnim.frame);
-		            }
-		        }
-		        else
-		        {
+					}
+				}
+				else
+				{
 					this.fallHeight = 0;
-		        }
-		    }
+				}
+			}
 
 			// If the player is on a conveyor going right
-			if (Util.horizontalCollisionLine(x + 7,  x + 23, y + this.playerSprite.body.height, "name", "conveyor right", false))
+			if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "name", "conveyor right", false))
 			{
 				if (horizontalDirection == "LEFT")
 					horizontalDirection = null;
@@ -239,7 +239,7 @@ var Player =
 			}
 
 			// If the player is on a conveyor going left
-			if (Util.horizontalCollisionLine(x + 7,  x + 23, y + this.playerSprite.body.height, "name", "conveyor left", false))
+			if (Util.horizontalCollisionLine(x + 7, x + 23, y + this.playerSprite.body.height, "name", "conveyor left", false))
 			{
 				if (horizontalDirection == "RIGHT")
 					horizontalDirection = null;
@@ -256,15 +256,15 @@ var Player =
 		}
 
 		// If the player is under a wall
-		if (verticalDirection == "UP" && Util.horizontalCollisionLine (x + 7 , x + 23,  y - 2, "name", "wall"))
+		if (verticalDirection == "UP" && Util.horizontalCollisionLine(x + 7, x + 23, y - 2, "name", "wall"))
 			verticalDirection = null;
 
-		 // If there is something blocking on the right
+		// If there is something blocking on the right
 		if (horizontalDirection == "RIGHT" && Util.verticalCollisionLine(y + 6, y + this.playerSprite.body.height - 1, x + 24, "name", "wall", false))
 			horizontalDirection = null;
 
 		// if there nothing blocking on the left
-		if (horizontalDirection == "LEFT" && Util.verticalCollisionLine(y + 6 ,y + this.playerSprite.body.height - 1, x + 5, "name", "wall", false))
+		if (horizontalDirection == "LEFT" && Util.verticalCollisionLine(y + 6, y + this.playerSprite.body.height - 1, x + 5, "name", "wall", false))
 			horizontalDirection = null;
 
 		// Display the new position of the player
@@ -281,7 +281,7 @@ var Player =
 			this.playerSprite.body.y -= 1;
 
 		// If the player collides with a key
-		if (Util.collisionRectangle(x + 7, y , x + 23, y + this.playerSprite.body.height, "name", "key", false))
+		if (Util.collisionRectangle(x + 7, y, x + 23, y + this.playerSprite.body.height, "name", "key", false))
 		{
 			Level.keysTaken++;
 
@@ -295,13 +295,13 @@ var Player =
 		}
 
 		// If the player meets a deadly object
-		if (Util.collisionRectangle (x + 5, y, x + 27, y + this.playerSprite.body.height - 1, "type", "deadly", false) ||
+		if (Util.collisionRectangle(x + 5, y, x + 27, y + this.playerSprite.body.height - 1, "type", "deadly", false) ||
 			Util.collisionRectangleWithMonsters(x + 4, y, x + 28, y + this.playerSprite.body.height))
 			this.kill();
 
 
 		// If the player has taken all level's keys, and if he is located on the next gate, go to the next level
-		if (Level.keysTaken == Data.levels[Level.level-1][0] && Util.collisionRectangleWithEndLevel (x + 4, y, x + 28, y + this.playerSprite.body.height))
+		if (Level.keysTaken == Data.levels[Level.level - 1][0] && Util.collisionRectangleWithEndLevel(x + 4, y, x + 28, y + this.playerSprite.body.height))
 		{
 			// If the player has finished the last level
 			if (Level.level == Data.levels.length)
@@ -312,7 +312,7 @@ var Player =
 	},
 
 	// Display player going left
-	playLeft : function()
+	playLeft: function ()
 	{
 		this.animationLeftCounter -= 1;
 
@@ -325,7 +325,7 @@ var Player =
 	},
 
 	// Display player going right
-	playRight : function()
+	playRight: function ()
 	{
 		this.animationRightCounter -= 1;
 
@@ -338,7 +338,7 @@ var Player =
 	},
 
 	// When the player is killed, display the 'dying' animation
-	kill : function()
+	kill: function ()
 	{
 		GameController.gameState = "killPlayer";
 		this.playerSprite.visible = false;
@@ -352,7 +352,7 @@ var Player =
 			this.playerDyingSprite.loadTexture("blaggerDyingWhite");
 
 		// When the player has finished to die, reset the level's properties
-		anim.onComplete.add(function()
+		anim.onComplete.add(function ()
 		{
 			// If there is the 'bonus man', remove it
 			if (Level.bonusMan == true)
@@ -369,7 +369,7 @@ var Player =
 
 			Level.resetAirLevel();
 			HUD.displayAirLevel();
-			
+
 			// If there are no lives left, the game is over
 			if (GameController.lives == 0)
 				GameController.gameState = "show game over";

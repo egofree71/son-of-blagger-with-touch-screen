@@ -23,9 +23,9 @@ function Monster(monsterProperties, tileProperties)
     this.sprite.animations.add('animation', [0, 1], 10, true);
 };
 
-Monster.prototype.updatePosition = function()
+Monster.prototype.updatePosition = function ()
 {
-    if (GameController.gameState != "playing") return ;
+    if (GameController.gameState != "playing") return;
 
     Level.animationCounter -= 1;
 
@@ -41,7 +41,7 @@ Monster.prototype.updatePosition = function()
 
     switch (this.direction)
     {
-        case "right" :
+        case "right":
 
             // If we haven't reached the maximum distance, continue
             if (this.distanceFromOrigin <= this.maxDistance)
@@ -56,7 +56,7 @@ Monster.prototype.updatePosition = function()
 
             break;
 
-        case "left" :
+        case "left":
 
             if (this.distanceFromOrigin >= 0)
             {
@@ -70,7 +70,7 @@ Monster.prototype.updatePosition = function()
 
             break;
 
-        case "down" :
+        case "down":
             // If we haven't reached the maximum distance, continue
             if (this.distanceFromOrigin <= this.maxDistance)
             {
@@ -84,7 +84,7 @@ Monster.prototype.updatePosition = function()
 
             break;
 
-        case "up" :
+        case "up":
 
             if (this.distanceFromOrigin >= 0)
             {
@@ -99,6 +99,6 @@ Monster.prototype.updatePosition = function()
             break;
     }
 
-    this.sprite.x += horizontalSpeed ;
-    this.sprite.y += verticalSpeed ;
+    this.sprite.x += horizontalSpeed;
+    this.sprite.y += verticalSpeed;
 }

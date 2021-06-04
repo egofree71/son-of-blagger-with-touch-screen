@@ -1,20 +1,20 @@
 var GameController =
 {
     // The current game state
-    gameState : null,
-    score : 0,
-    hiScore : null,
-    lives : 3,
+    gameState: null,
+    score: 0,
+    hiScore: null,
+    lives: 3,
 
-    update : function()
+    update: function ()
     {
-        switch(this.gameState)
+        switch (this.gameState)
         {
             case "load introduction":
                 Level.displayIntroduction();
 
                 // If the user pressed a key, start a new game
-                game.input.onDown.add(function()
+                game.input.onDown.add(function ()
                 {
                     Level.removeIntroduction();
                     game.input.onDown.dispose();
@@ -58,7 +58,8 @@ var GameController =
                 Level.displayGameOver();
 
                 // If the user pressed a key, show the introduction
-                game.input.keyboard.onPressCallback = function( ){
+                game.input.keyboard.onPressCallback = function ()
+                {
                     game.input.keyboard.onPressCallback = null;
                     Level.gameOver.destroy();
                     GameController.gameState = "load introduction";
