@@ -1,7 +1,6 @@
 "use strict";
 
 var map;
-var keyPressed;
 var layer;
 
 var vanishingPlatformGroup;
@@ -104,9 +103,6 @@ function create()
 	Level.initMonsters();
 
 	Player.playerSprite.bringToTop();
-
-	// Store the key pressed
-	keyPressed = game.input.keyboard.createCursorKeys();
 
 	GameController.hiScore = localStorage.getItem('hiScore');
 

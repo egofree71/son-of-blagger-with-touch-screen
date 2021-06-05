@@ -260,7 +260,7 @@ var Player =
 			if (Util.collisionRectangle(x + 7, y + this.playerSprite.body.height - 18, x + 23, y + this.playerSprite.body.height - 1, "name", "ladder"))
 				verticalDirection = "UP";
 
-			if (keyPressed.left.isUp && keyPressed.right.isUp)
+			if (this.leftButton == false && this.rightButton == false)
 				this.playerSprite.animations.stop();
 		}
 
