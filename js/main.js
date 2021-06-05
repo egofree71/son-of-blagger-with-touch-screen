@@ -68,7 +68,6 @@ function preload()
 
 function create()
 {	
-	alert("Phaser 2.6.2");
 	// Set scaling
 	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 	// center the game
