@@ -16,9 +16,9 @@ var HUD =
     counter: 36,
     bonusManSprite: null,
     // Game controller buttons
-    leftButtonSprite: null,
-    rightButtonSprite: null,
-    upButtonSprite: null,
+    leftButton: null,
+    rightButton: null,
+    upButton: null,
 
     colorCounter: 3,
     colorIndex: 0,
@@ -59,14 +59,27 @@ var HUD =
         this.hideBonusMan();
         this.bonusManSprite.fixedToCamera = true;
 
-        this.leftButtonSprite = game.add.sprite(this.charWidth * 3, game.camera.height + this.charWidth * 6, 'leftButton');
-        this.leftButtonSprite.fixedToCamera = true;
+        // create virtual game controller buttons 
+        this.leftButton = game.add.button(this.charWidth * 3, game.camera.height + this.charWidth * 6, 'leftButton', null, this, 0, 1, 0, 1);
+        this.leftButton.fixedToCamera = true;
+        this.leftButton.events.onInputDown.add(function () { Player.leftButton = true; });
+        this.leftButton.events.onInputUp.add(function () { Player.leftButton = false; });
+        this.leftButton.events.onInputOver.add(function () { Player.leftButton = true; });
+        this.leftButton.events.onInputOut.add(function () { Player.leftButton = false; })
 
-        this.rightButtonSprite = game.add.sprite(this.charWidth * 11, game.camera.height + this.charWidth * 6, 'rightButton');
-        this.rightButtonSprite.fixedToCamera = true;
+        this.rightButton = game.add.button(this.charWidth * 11, game.camera.height + this.charWidth * 6, 'rightButton', null, this, 0, 1, 0, 1);
+        this.rightButton.fixedToCamera = true;
+        this.rightButton.events.onInputDown.add(function () { Player.rightButton = true; });
+        this.rightButton.events.onInputUp.add(function () { Player.rightButton= false; });
+        this.rightButton.events.onInputOver.add(function () { Player.rightButton = true; });
+        this.rightButton.events.onInputOut.add(function () { Player.rightButton = false; })
 
-        this.upButtonSprite = game.add.sprite(this.charWidth * 30, game.camera.height + this.charWidth * 6, 'upButton');
-        this.upButtonSprite.fixedToCamera = true;
+        this.upButton = game.add.button(this.charWidth * 30, game.camera.height + this.charWidth * 6, 'upButton', null, this, 0, 1, 0, 1);
+        this.upButton.fixedToCamera = true;
+        this.upButton.events.onInputDown.add(function () { Player.jumpButton = true; });
+        this.upButton.events.onInputUp.add(function () { Player.jumpButton= false; });
+        this.upButton.events.onInputOver.add(function () { Player.jumpButton = true; });
+        this.upButton.events.onInputOut.add(function () { Player.jumpButton = false; })
 
         this.hideButtons();
 
@@ -117,17 +130,17 @@ var HUD =
     // Display the game controller buttons
     displayButtons: function ()
     {
-        this.leftButtonSprite.tint = 0xffffff;
-        this.rightButtonSprite.tint = 0xffffff;
-        this.upButtonSprite.tint = 0xffffff;
+        this.leftButton.tint = 0xffffff;
+        this.rightButton.tint = 0xffffff;
+        this.upButton.tint = 0xffffff;
     },
 
     // Hide the game controller buttons
     hideButtons: function ()
     {
-        this.leftButtonSprite.tint = 0x000000;
-        this.rightButtonSprite.tint = 0x000000;
-        this.upButtonSprite.tint = 0x000000;
+        this.leftButton.tint = 0x000000;
+        this.rightButton.tint = 0x000000;
+        this.upButton.tint = 0x000000;
     },
 
     // Decrease air level and display it

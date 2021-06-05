@@ -1,11 +1,17 @@
 var Player =
 {
+	// Show if the player has touched the jump button
+	jumpButton: false,
 	// Show if the player is jumping
 	jumping: false,
 	// The index in the jump animation
 	jumpIndex: 0,
 	// Show the horizontal direction of the jump
 	jumpingDirection: null,
+	// Show if the player has touched the left button
+	leftButton: false,
+	// Show if the player has touched the right button
+	rightButton: false,
 	// When player is falling, store the fall height
 	fallHeight: 0,
 	// If the player exceeds this limit, the fall is deadly
@@ -48,9 +54,12 @@ var Player =
 		this.animationLeftCounter = this.animationMaxCounter;
 		this.animationRightCounter = this.animationMaxCounter;
 
+		this.jumpButton = false;
 		this.jumping = false;
 		this.jumpIndex = 0;
 		this.jumpingDirection = null;
+		this.leftButton = false;
+		this.rightButton = false;
 		this.deadlyFall = false;
 
 		this.fallHeight = 0;
@@ -87,7 +96,7 @@ var Player =
 		if (this.fallHeight == 0 && this.jumping == false)
 		{
 			// If the player wants to jump
-			if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+			if (this.jumpButton)
 			{
 				this.jumping = true;
 				this.jumpIndex = 0;
@@ -95,7 +104,7 @@ var Player =
 			}
 
 			// If the player wants to go right
-			if (keyPressed.right.isDown)
+			if (this.rightButton)
 			{
 				if (this.jumping)
 					this.jumpingDirection = "RIGHT";
@@ -115,7 +124,7 @@ var Player =
 			}
 
 			// If the player wants to go left
-			if (keyPressed.left.isDown)
+			if (this.leftButton)
 			{
 				if (this.jumping)
 					this.jumpingDirection = "LEFT";
