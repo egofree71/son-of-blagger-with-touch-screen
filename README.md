@@ -16,4 +16,4 @@ The player can't make 'double jumps', except if he is on a slide. Beyond a given
 
 **Play the game :**
 
-http://egofree71.github.io/son-of-blagger-with-javascript/
+https://egofree71.github.io/son-of-blagger-with-touch-screen/
