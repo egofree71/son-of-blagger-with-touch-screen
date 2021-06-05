@@ -157,8 +157,7 @@ var Level =
     this.introductionLogo = game.add.sprite(180, 30, 'title');
     this.introductionLogo.fixedToCamera = true;
 
-    //this.fontIntroduction = Util.drawFontText("Touch the screen to start a new game", 2, 10);
-    this.fontIntroduction = Util.drawFontText("Phaser 2.18.0", 2, 10);
+    this.fontIntroduction = Util.drawFontText("Touch the screen to start a new game", 2, 10);
   },
 
   // Remove the introduction title

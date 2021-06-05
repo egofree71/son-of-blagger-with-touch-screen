@@ -70,6 +70,8 @@ function create()
 {	
 	// Set scaling
 	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+	//screen size will be set automatically
+	game.scale.setScreenSize(true);
 	// center the game
 	game.scale.pageAlignHorizontally = true;
 	game.scale.pageAlignVertically = true;
