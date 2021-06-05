@@ -18,7 +18,6 @@ var GameController =
                 {
                     Level.removeIntroduction();
                     game.input.onDown.dispose();
-
                     GameController.gameState = "load level";
                 });
 
@@ -49,6 +48,7 @@ var GameController =
 
             // Before displaying monsters, show explosions
             case "start level":
+                HUD.displayButtons();
                 Level.displayMonsters();
                 break;
 
@@ -62,6 +62,7 @@ var GameController =
                 {
                     game.input.keyboard.onPressCallback = null;
                     Level.gameOver.destroy();
+                    HUD.hideButtons();
                     GameController.gameState = "load introduction";
                 };
 

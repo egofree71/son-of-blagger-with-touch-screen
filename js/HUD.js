@@ -15,6 +15,10 @@ var HUD =
     // Counter used to decrease the air level
     counter: 36,
     bonusManSprite: null,
+    // Game controller buttons
+    leftButtonSprite: null,
+    rightButtonSprite: null,
+    upButtonSprite: null,
 
     colorCounter: 3,
     colorIndex: 0,
@@ -54,6 +58,17 @@ var HUD =
         this.bonusManSprite = game.add.sprite(this.charWidth * 2, game.camera.height + this.charWidth * 5, 'bonusMan');
         this.hideBonusMan();
         this.bonusManSprite.fixedToCamera = true;
+
+        this.leftButtonSprite = game.add.sprite(this.charWidth * 3, game.camera.height + this.charWidth * 6, 'leftButton');
+        this.leftButtonSprite.fixedToCamera = true;
+
+        this.rightButtonSprite = game.add.sprite(this.charWidth * 11, game.camera.height + this.charWidth * 6, 'rightButton');
+        this.rightButtonSprite.fixedToCamera = true;
+
+        this.upButtonSprite = game.add.sprite(this.charWidth * 30, game.camera.height + this.charWidth * 6, 'upButton');
+        this.upButtonSprite.fixedToCamera = true;
+
+        this.hideButtons();
 
         this.drawText("lives", 2, 4, 0x808080);
         this.HUDLives = this.drawText(('00' + GameController.lives).substr(-2), 8, 4);
@@ -97,6 +112,22 @@ var HUD =
     hideBonusMan: function ()
     {
         this.bonusManSprite.tint = 0x000000;
+    },
+
+    // Display the game controller buttons
+    displayButtons: function ()
+    {
+        this.leftButtonSprite.tint = 0xffffff;
+        this.rightButtonSprite.tint = 0xffffff;
+        this.upButtonSprite.tint = 0xffffff;
+    },
+
+    // Hide the game controller buttons
+    hideButtons: function ()
+    {
+        this.leftButtonSprite.tint = 0x000000;
+        this.rightButtonSprite.tint = 0x000000;
+        this.upButtonSprite.tint = 0x000000;
     },
 
     // Decrease air level and display it

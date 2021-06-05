@@ -60,6 +60,10 @@ function preload()
 	game.load.spritesheet('waveRight', 'assets/sprites/wave right.png', 16, 16);
 	game.load.spritesheet('vanishingPlatform', 'assets/sprites/vanishing platform.png', 16, 16);
 
+	game.load.spritesheet('leftButton', 'assets/sprites/left button.png', 100, 100);
+	game.load.spritesheet('rightButton', 'assets/sprites/right button.png', 100, 100);
+	game.load.spritesheet('upButton', 'assets/sprites/up button.png', 100, 100);
+
 	game.load.image('blaggerFont', 'assets/tileset/fonts.png');
 }
 
