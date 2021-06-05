@@ -158,7 +158,7 @@ var Level =
     this.introductionLogo.fixedToCamera = true;
 
     //this.fontIntroduction = Util.drawFontText("Touch the screen to start a new game", 2, 10);
-    this.fontIntroduction = Util.drawFontText("Phaser 2.6.2", 2, 10);
+    this.fontIntroduction = Util.drawFontText("Phaser 2.18.0", 2, 10);
   },
 
   // Remove the introduction title
