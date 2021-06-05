@@ -68,10 +68,14 @@ function preload()
 }
 
 function create()
-{
-	// Set full screen
-	game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-	game.scale.startFullScreen(false);
+{	
+	// Set scaling
+	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+	//screen size will be set automatically
+	game.scale.setScreenSize(true);
+	// center the game
+	game.scale.pageAlignHorizontally = true;
+	game.scale.pageAlignVertically = true;
 
 	//  Set the physics system
 	game.physics.startSystem(Phaser.Physics.ARCADE);
