@@ -60,21 +60,21 @@ var HUD =
         this.bonusManSprite.fixedToCamera = true;
 
         // create virtual game controller buttons 
-        this.leftButton = game.add.button(this.charWidth * 3, game.camera.height + this.charWidth * 6, 'leftButton', null, this, 0, 1, 0, 1);
+        this.leftButton = game.add.button(this.charWidth * 3, game.camera.height + this.charWidth * 6 - 5, 'leftButton', null, this, 0, 1, 0, 1);
         this.leftButton.fixedToCamera = true;
         this.leftButton.events.onInputDown.add(function () { Player.leftButton = true; });
         this.leftButton.events.onInputUp.add(function () { Player.leftButton = false; });
         this.leftButton.events.onInputOver.add(function () { Player.leftButton = true; });
         this.leftButton.events.onInputOut.add(function () { Player.leftButton = false; })
 
-        this.rightButton = game.add.button(this.charWidth * 11, game.camera.height + this.charWidth * 6, 'rightButton', null, this, 0, 1, 0, 1);
+        this.rightButton = game.add.button(this.charWidth * 11, game.camera.height + this.charWidth * 6 - 5, 'rightButton', null, this, 0, 1, 0, 1);
         this.rightButton.fixedToCamera = true;
         this.rightButton.events.onInputDown.add(function () { Player.rightButton = true; });
         this.rightButton.events.onInputUp.add(function () { Player.rightButton= false; });
         this.rightButton.events.onInputOver.add(function () { Player.rightButton = true; });
         this.rightButton.events.onInputOut.add(function () { Player.rightButton = false; })
 
-        this.upButton = game.add.button(this.charWidth * 30, game.camera.height + this.charWidth * 6, 'upButton', null, this, 0, 1, 0, 1);
+        this.upButton = game.add.button(this.charWidth * 30, game.camera.height + this.charWidth * 6 - 5, 'upButton', null, this, 0, 1, 0, 1);
         this.upButton.fixedToCamera = true;
         this.upButton.events.onInputDown.add(function () { Player.jumpButton = true; });
         this.upButton.events.onInputUp.add(function () { Player.jumpButton= false; });
