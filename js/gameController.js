@@ -13,7 +13,7 @@ var GameController =
             case "load introduction":
                 Level.displayIntroduction();
 
-                // If the user pressed a key, start a new game
+                // If the user touched the screen, start a new game
                 game.input.onDown.add(function ()
                 {
                     Level.removeIntroduction();
@@ -57,14 +57,14 @@ var GameController =
                 Level.resetGame();
                 Level.displayGameOver();
 
-                // If the user pressed a key, show the introduction
-                game.input.keyboard.onPressCallback = function ()
+                // If the user touched the screen, start a new game
+                game.input.onDown.add(function ()
                 {
                     game.input.keyboard.onPressCallback = null;
                     Level.gameOver.destroy();
                     HUD.hideButtons();
                     GameController.gameState = "load introduction";
-                };
+                });
 
                 this.gameState = "game over";
                 break;
