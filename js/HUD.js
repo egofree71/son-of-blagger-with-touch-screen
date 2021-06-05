@@ -55,7 +55,7 @@ var HUD =
 
         this.drawText("air", 2, 1, 0x399aff);
 
-        this.bonusManSprite = game.add.sprite(this.charWidth * 2, game.camera.height + this.charWidth * 5, 'bonusMan');
+        this.bonusManSprite = game.add.sprite(this.charWidth * 2, game.camera.height + this.charWidth * 3, 'bonusMan');
         this.hideBonusMan();
         this.bonusManSprite.fixedToCamera = true;
 
