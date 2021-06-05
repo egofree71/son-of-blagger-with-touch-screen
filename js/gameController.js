@@ -19,6 +19,10 @@ var GameController =
                     Level.removeIntroduction();
                     game.input.onDown.dispose();
                     GameController.gameState = "load level";
+
+                    // Set full screen
+                    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+                    game.scale.startFullScreen(false);
                 });
 
                 this.gameState = "introduction";
@@ -63,6 +67,7 @@ var GameController =
                     game.input.keyboard.onPressCallback = null;
                     Level.gameOver.destroy();
                     HUD.hideButtons();
+                    game.scale.stopFullScreen();
                     GameController.gameState = "load introduction";
                 });
 
